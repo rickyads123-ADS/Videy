@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>(AQUI LE PONES EL TITULO AL VIDEO)</title>
+  <title>ENFERMERA</title>
 </head>
 <body>
   <div style="max-width: 100%; overflow: hidden;">
     <video controls autoplay style="width: 100%;">
-      <source src="(AQUI SUBES UN VIDEO A VIDEY.CO Y COPIAS EL ENLACE QUE QUEDE.MP4 AL FINAL)" type="video/mp4">
+      <source src="https://videy.co/v?id=zXjvKkmp" type="video/mp4">
       Tu navegador no soporta la reproducción de videos.
     </video>
   </div>
