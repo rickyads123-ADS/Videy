@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -37,9 +37,19 @@
 </head>
 <body>
     <div class="video-container">
-        <a href="https://oulsools.com/4/7329929" class="enlace-superior" id="enlace-superior" target="_blank">Haz clic aquí para ver más</a> <!-- Reemplaza "tu-enlace" con la URL de tu enlace -->
-        <video controls id="video" onclick="playVideo()">
+        <a href="https://kirteexe.tv/4/7329929 class="enlace-superior" id="enlace-superior" target="_blank">Haz clic aquí para ver más</a> <!-- Reemplaza "tu-enlace" con la URL de tu enlace -->
+        <video controls id="video">
             <source src="https://cdn.videy.co/t9HKiYp9.mp4" type="video/mp4"> <!-- Reemplaza "tu-video.mp4" con la URL de tu video -->
             Tu navegador no soporta la etiqueta de video.
         </video>
     </div>
+
+    <script>
+        // Cuando el usuario hace clic en el video, reproducirlo
+        document.getElementById('video').addEventListener('click', function() {
+            this.play();
+            document.getElementById('enlace-superior').style.display = 'none'; // Ocultar el enlace cuando se reproduce el video
+        });
+    </script>
+</body>
+</html>
