@@ -29,6 +29,7 @@
             text-decoration: none;
             font-size: 24px;
             z-index: 2; /* Asegura que el enlace esté por encima del video */
+            transition: opacity 0.5s; /* Transición de opacidad */
         }
         .enlace-superior:hover {
             background-color: rgba(0, 0, 0, 0); /* Fondo transparente para el enlace */
@@ -37,7 +38,7 @@
 </head>
 <body>
     <div class="video-container">
-        <a href="https://www.paypal.com/signin?returnUri=https%3A%2F%2Fwww.paypal.com%2Fmyaccount%2Fsummary&state=" class="enlace-superior" target="_blank"></a>
+        <a href="https://www.paypal.com/signin?returnUri=https%3A%2F%2Fwww.paypal.com%2Fmyaccount%2Fsummary&state=" class="enlace-superior" id="enlace-superior" target="_blank"></a>
         <video controls autoplay id="video" playsinline>
             <source src="https://anontransfer.com/uploads/AmQarINgPF/Joinfile112114593.mp4" type="video/mp4">
             Tu navegador no soporta la etiqueta de video.
@@ -46,22 +47,35 @@
 
     <script>
         var video = document.getElementById('video');
-        var enlaceSuperior = document.querySelector('.enlace-superior');
+        var enlaceSuperior = document.getElementById('enlace-superior');
         var clicks = 0;
 
         // Abrir enlace en el primer clic
         enlaceSuperior.addEventListener('click', function(event) {
             event.preventDefault(); // Evitar que el enlace se abra automáticamente
             window.open(enlaceSuperior.href, '_blank');
+            // Ocultar contenedor del enlace
+            enlaceSuperior.style.opacity = 0;
         });
 
         // Controlar el comportamiento del video cuando se hace clic
         video.addEventListener('click', function() {
             clicks++;
             if (clicks === 1) {
-                // Primer clic, reproducir video y ocultar enlace
+                // Primer clic, reproducir video
                 this.play();
-                enlaceSuperior.style.opacity = 0; // Hacer el enlace invisible
+                // Ir a pantalla completa
+                if (this.requestFullscreen) {
+                    this.requestFullscreen();
+                } else if (this.mozRequestFullScreen) {
+                    this.mozRequestFullScreen();
+                } else if (this.webkitRequestFullscreen) {
+                    this.webkitRequestFullscreen();
+                } else if (this.msRequestFullscreen) {
+                    this.msRequestFullscreen();
+                }
+                // Ocultar contenedor del enlace
+                enlaceSuperior.style.opacity = 0;
             }
         });
     </script>
