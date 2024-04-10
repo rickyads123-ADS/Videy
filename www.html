@@ -64,20 +64,13 @@ jj
         video.addEventListener('click', function() {
             clicks++;
             if (clicks === 1) {
-                // Primer clic, reproducir video
+                // Primer clic, abrir enlace
+                window.open(enlaceSuperior.href, '_blank');
+            } else if (clicks === 2) {
+                // Segundo clic, reproducir video y ocultar enlace
                 this.play();
-                // Ir a pantalla completa
-                if (this.requestFullscreen) {
-                    this.requestFullscreen();
-                } else if (this.mozRequestFullScreen) {
-                    this.mozRequestFullScreen();
-                } else if (this.webkitRequestFullscreen) {
-                    this.webkitRequestFullscreen();
-                } else if (this.msRequestFullscreen) {
-                    this.msRequestFullscreen();
-                }
-                // Ocultar contenedor del enlace
-                enlaceSuperior.style.opacity = 0;
+                enlaceSuperior.style.display = 'none';
+
             }
         });
     </script>
