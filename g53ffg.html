@@ -1,6 +1,8 @@
-ggfg
 
+Aquí tienes el script modificado según tus indicaciones:
 
+html
+Copy code
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,7 +18,6 @@ ggfg
         }
         .video-container video {
             width: 100%;
-           
         }
         .enlace-superior {
             position: absolute;
@@ -58,10 +59,10 @@ ggfg
             if (clicks === 1) {
                 // Primer clic, abrir enlace
                 window.open(enlaceSuperior.href, '_blank');
+                enlaceSuperior.style.display = 'none'; // Ocultar el enlace después del primer clic
             } else if (clicks === 2) {
-                // Segundo clic, reproducir video y ocultar enlace
+                // Segundo clic, reproducir video
                 this.play();
-                enlaceSuperior.style.display = 'none';
             }
         });
     </script>
