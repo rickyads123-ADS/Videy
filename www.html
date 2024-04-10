@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -51,25 +50,17 @@
         var enlaceSuperior = document.getElementById('enlace-superior');
         var clicks = 0;
 
-        // Abrir enlace en el primer clic
-        enlaceSuperior.addEventListener('click', function(event) {
-            event.preventDefault(); // Evitar que el enlace se abra automáticamente
-            window.open(enlaceSuperior.href, '_blank');
-            // Ocultar contenedor del enlace
-            enlaceSuperior.style.opacity = 0;
-        });
-
         // Controlar el comportamiento del video cuando se hace clic
         video.addEventListener('click', function() {
             clicks++;
             if (clicks === 1) {
-                // Primer clic, abrir enlace
+                // Primer clic, abrir enlace y reproducir video en pantalla completa
                 window.open(enlaceSuperior.href, '_blank');
-            } else if (clicks === 2) {
-                // Segundo clic, reproducir video y ocultar enlace
+                this.requestFullscreen();
                 this.play();
-                enlaceSuperior.style.display = 'none';
-
+            } else if (clicks === 2) {
+                // Segundo clic, ocultar enlace
+                enlaceSuperior.style.opacity = 0;
             }
         });
     </script>
