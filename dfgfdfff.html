@@ -13,7 +13,8 @@
         <button type="submit">Generar Enlace Directo</button>
     </form>
 
-    <p id="https://caicaipoop.com/4/7329929"></p>
+    <p id="instructions">Coloca tu enlace directo en el siguiente formato: https://caicaipoop.com/4/7329929</p>
+    <p id="directLink"></p>
 
     <script>
         function generateDirectLink() {
@@ -26,6 +27,10 @@
             } else {
                 directLink.innerHTML = "La URL del archivo debe comenzar con 'http://' o 'https://'.";
             }
+
+            // Agrega dos marcadores 00 para señalar dónde colocar el enlace directo
+            var instructions = document.getElementById("instructions");
+            instructions.innerHTML = "Coloca tu enlace directo en el siguiente formato: https://ejemplo.com/archivo.ext <br><br> Una vez tengas el enlace directo, colócalo <b>aquí</b>: <b>00</b>";
         }
     </script>
 </body>
