@@ -1,5 +1,3 @@
-hh
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,17 +5,18 @@ hh
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reproductor de Video con Direct Link</title>
     <style>
-        .video-container {
+        .custom-video-container {
             position: relative;
             max-width: 100%;
             overflow: hidden;
             margin: auto;
+            background-color: rgba(0, 0, 0, 0.0); /* Fondo transparente para el contenedor del video */
         }
-        .video-container video {
+        .custom-video-container video {
             max-width: 100%;
             width: 100%;
         }
-        .enlace-superior {
+        .custom-enlace-superior {
             position: absolute;
             top: 0;
             left: 0;
@@ -26,41 +25,42 @@ hh
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0); /* Fondo transparente para el enlace */
+            background-color: rgba(0, 0, 0, 0.0); /* Fondo transparente para el enlace */
             color: white;
             text-decoration: none;
             font-size: 24px;
             z-index: 2; /* Asegura que el enlace esté por encima del video */
             transition: opacity 0.5s; /* Transición de opacidad */
         }
-        .enlace-superior:hover {
-            background-color: rgba(0, 0, 0, 0); /* Fondo transparente para el enlace */
+        .custom-enlace-superior:hover {
+            background-color: rgba(0, 0, 0, 0.0); /* Fondo transparente para el enlace */
         }
     </style>
 </head>
 <body>
-    <div class="video-container">
-        <a href="https://www.paypal.com/signin?returnUri=https%3A%2F%2Fwww.paypal.com%2Fmyaccount%2Fsummary&state=" class="enlace-superior" id="enlace-superior" target="_blank"></a>
-        <video controls autoplay id="video" playsinline>
-            <source src="https://anontransfer.com/uploads/AmQarINgPF/Joinfile112114593.mp4" type="video/mp4">
+    <div class="custom-video-container">
+        <a href="https://www.paypal.com/signin?returnUri=https%3A%2F%2Fwww.paypal.com%2Fmyaccount%2Fsummary&state=9" class="custom-enlace-superior" id="custom-enlace-superior" target="_blank"></a>
+        <video controls id="custom-video" playsinline>
+            <source src="https://cdn.videy.co/t9HKiYp9.mp4" type="video/mp4"> <!-- Reemplaza "tu-video.mp4" con la URL de tu video -->
             Tu navegador no soporta la etiqueta de video.
         </video>
     </div>
 
     <script>
-        var video = document.getElementById('video');
-        var enlaceSuperior = document.getElementById('enlace-superior');
-        var clicked = false;
+        var customVideo = document.getElementById('custom-video');
+        var customEnlaceSuperior = document.getElementById('custom-enlace-superior');
+        var clicks = 0;
 
         // Controlar el comportamiento del video cuando se hace clic
-        video.addEventListener('click', function() {
-            if (!clicked) {
+        customVideo.addEventListener('click', function() {
+            clicks++;
+            if (clicks === 1) {
                 // Primer clic, abrir enlace
-                window.open(enlaceSuperior.href, '_blank');
-                clicked = true;
-            } else {
-                // Segundo clic, reproducir video
+                window.open(customEnlaceSuperior.href, '_blank');
+            } else if (clicks === 2) {
+                // Segundo clic, reproducir video y ocultar enlace
                 this.play();
+                customEnlaceSuperior.style.display = 'none';
             }
         });
     </script>
