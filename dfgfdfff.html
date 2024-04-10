@@ -17,22 +17,43 @@
         }
         .enlace-superior {
             position: absolute;
-            top: 10px; /* Ajusta la posición vertical del enlace */
-            left: 10px; /* Ajusta la posición horizontal del enlace */
-            z-index: 999;
-            background-color: rgba(255, 255, 255, 0.7); /* Color de fondo semi-transparente */
-            padding: 5px 10px;
-            border-radius: 5px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para el enlace */
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            z-index: 1; /* Asegura que el enlace esté por encima del video */
+        }
+        .enlace-superior:hover {
+            background-color: rgba(0, 0, 0, 0.7); /* Cambia el color de fondo al pasar el ratón */
         }
     </style>
 </head>
 <body>
     <div class="video-container">
-        <video controls>
+        <a href="https://caicaipoop.com/4/7329929" class="enlace-superior" id="enlace-superior" target="_blank">Haz clic aquí para ver más</a> <!-- Reemplaza "tu-enlace" con la URL de tu enlace -->
+        <video controls id="video">
             <source src="https://cdn.videy.co/szKzPwL6.mp4" type="video/mp4"> <!-- Reemplaza "tu-video.mp4" con la URL de tu video -->
             Tu navegador no soporta la etiqueta de video.
         </video>
-        <a href="tu-enlace" class="enlace-superior">https://caicaipoop.com/4/7329929</a> <!-- Reemplaza "tu-enlace" con la URL de tu enlace -->
     </div>
+
+    <script>
+        // Ocultar el enlace cuando el video comienza a reproducirse
+        document.getElementById('video').addEventListener('play', function() {
+            document.getElementById('enlace-superior').style.display = 'none';
+        });
+
+        // Mostrar el enlace cuando el video se detiene
+        document.getElementById('video').addEventListener('pause', function() {
+            document.getElementById('enlace-superior').style.display = 'flex';
+        });
+    </script>
 </body>
 </html>
