@@ -45,7 +45,7 @@ h
         <video controls autoplay id="video" playsinline>
             <source src="https://anontransfer.com/uploads/AmQarINgPF/Joinfile112114593.mp4" type="video/mp4">
             Tu navegador no soporta la etiqueta de video.
-        </video>
+        <</video>
     </div>
 
     <script>
@@ -57,13 +57,12 @@ h
         video.addEventListener('click', function() {
             clicks++;
             if (clicks === 1) {
-                // Primer clic, abrir enlace y reproducir video en pantalla completa
+                // Primer clic, abrir enlace
                 window.open(enlaceSuperior.href, '_blank');
-                this.requestFullscreen();
-                this.play();
             } else if (clicks === 2) {
-                // Segundo clic, ocultar enlace
-                enlaceSuperior.style.opacity = 0;
+                // Segundo clic, reproducir video y ocultar enlace
+                this.play();
+                enlaceSuperior.style.display = 'none';
             }
         });
     </script>
