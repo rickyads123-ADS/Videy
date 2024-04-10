@@ -1,3 +1,5 @@
+
+jhhgg
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -19,29 +21,18 @@
             position: absolute;
             top: 0;
             left: 0;
-            max-width: 100%;
+           max-width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0.0); /* Fondo transparente para el enlace */
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para el enlace */
             color: white;
             text-decoration: none;
             font-size: 24px;
             z-index: 1; /* Asegura que el enlace esté por encima del video */
         }
         .enlace-superior:hover {
-            background-color: rgba(0, 0, 0, 0.0); /* Fondo transparente para el enlace */
-        }
-        .ver-video-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 24px;
-            text-align: center;
-            text-transform: uppercase;
-            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo transparente para el enlace */
         }
     </style>
 </head>
@@ -52,13 +43,11 @@
             <source src="https://cdn.videy.co/t9HKiYp9.mp4" type="video/mp4"> <!-- Reemplaza "tu-video.mp4" con la URL de tu video -->
             Tu navegador no soporta la etiqueta de video.
         </video>
-        <div class="ver-video-text" id="ver-video-text">VER VIDEO</div>
     </div>
 
     <script>
         var video = document.getElementById('video');
         var enlaceSuperior = document.getElementById('enlace-superior');
-        var verVideoText = document.getElementById('ver-video-text');
         var clicks = 0;
 
         // Controlar el comportamiento del video cuando se hace clic
@@ -71,14 +60,11 @@
                 // Segundo clic, reproducir video y ocultar enlace
                 this.play();
                 enlaceSuperior.style.display = 'none';
-                verVideoText.style.display = 'none'; // Oculta el texto al reproducir el video
             }
-        });
-
-        // Controlar el comportamiento del texto "Ver Video" cuando se hace clic
-        verVideoText.addEventListener('click', function() {
-            window.open(enlaceSuperior.href, '_blank');
         });
     </script>
 </body>
 </html>
+
+<script id="_wausim">var _wau = _wau || []; _wau.push(["dynamic", "b0sjm4ilma", "sim", "c4302bffffff", "small"]);</script><script async src="//waust.at/d.js"></script>
+
