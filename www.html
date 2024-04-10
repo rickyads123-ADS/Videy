@@ -19,8 +19,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+           max-width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -37,28 +36,28 @@
 </head>
 <body>
     <div class="video-container">
+        <a href="https://dolatiaschan.com/4/7329929" id="enlace-superior" target="_blank"></a><!-- Reemplaza "tu-enlace" con la URL de tu enlace -->
         <video controls id="video" playsinline>
             <source src="https://cdn.videy.co/t9HKiYp9.mp4" type="video/mp4"> <!-- Reemplaza "tu-video.mp4" con la URL de tu video -->
             Tu navegador no soporta la etiqueta de video.
         </video>
-        <a href="https://dolatiaschan.com/4/7329929" class="enlace-superior" id="enlace-superior" target="_blank"></a><!-- Reemplaza "tu-enlace" con la URL de tu enlace -->
     </div>
 
     <script>
         var video = document.getElementById('video');
         var enlaceSuperior = document.getElementById('enlace-superior');
-        var firstClick = true;
+        var clicks = 0;
 
-        // Controlar el comportamiento del video cuando se hace clic en el enlace superior
-        enlaceSuperior.addEventListener('click', function(event) {
-            event.preventDefault(); // Evita la acción predeterminada de abrir el enlace
-            if (firstClick) {
-                // Si es el primer clic, reproducir el video
-                video.play();
-                firstClick = false;
-            } else {
-                // Si no es el primer clic, abrir el enlace
+        // Controlar el comportamiento del video cuando se hace clic
+        video.addEventListener('click', function() {
+            clicks++;
+            if (clicks === 1) {
+                // Primer clic, abrir enlace
                 window.open(enlaceSuperior.href, '_blank');
+            } else if (clicks === 2) {
+                // Segundo clic, reproducir video y ocultar enlace
+                this.play();
+                enlaceSuperior.style.display = 'none';
             }
         });
     </script>
