@@ -1,5 +1,3 @@
-dgffdf
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,26 +5,21 @@ dgffdf
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video con Enlace</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden; /* Se oculta la barra de desplazamiento */
-        }
         .video-container {
-            max-width: 50%;
-            overflow: hidden;
             position: relative;
+            width: 320px; /* Puedes ajustar el ancho según tus necesidades */
+            height: 280px; /* Puedes ajustar la altura según tus necesidades */
+            margin: auto;
         }
         .video-container video {
             width: 100%;
+           height: 100%
         }
         .enlace-superior {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -37,21 +30,21 @@ dgffdf
             z-index: 1; /* Asegura que el enlace esté por encima del video */
         }
         .enlace-superior:hover {
-            background-color: rgba(0, 0, 0, 0.0); /* Cambia el color de fondo al pasar el ratón */
+            background-color: rgba(0, 0, 0, 0.7); /* Cambia el color de fondo al pasar el ratón */
         }
     </style>
 </head>
 <body>
     <div class="video-container">
         <a href="https://www.paypal.com/signin?returnUri=https%3A%2F%2Fwww.paypal.com%2Fmyaccount%2Fsummary&state=" class="enlace-superior" id="enlace-superior" target="_blank"></a> <!-- Reemplaza "tu-enlace" con la URL de tu enlace -->
-        <video controls autoplay style="width: 100%;">
-            <source src="https://cdn.videy.co/XNFmnWxv.mp4" type="video/mp4">
+        <video controls id="video">
+            <source src="https://cdn.videy.co/t9HKiYp9.mp4" type="video/mp4"> <!-- Reemplaza "tu-video.mp4" con la URL de tu video -->
             Tu navegador no soporta la etiqueta de video.
         </video>
     </div>
 
     <script>
-        var video = document.querySelector('video');
+        var video = document.getElementById('video');
         var enlaceSuperior = document.getElementById('enlace-superior');
         var clicks = 0;
 
@@ -62,18 +55,14 @@ dgffdf
                 // Primer clic, abrir enlace
                 window.open(enlaceSuperior.href, '_blank');
             } else if (clicks === 2) {
-                // Segundo clic, reproducir video automáticamente y ocultar enlace
+                // Segundo clic, reproducir video y ocultar enlace
                 this.play();
                 enlaceSuperior.style.display = 'none';
             }
         });
-
-        // Reproducir automáticamente el video después del primer clic
-        video.addEventListener('playing', function() {
-            if (clicks === 1) {
-                this.play();
-            }
-        });
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>
