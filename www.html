@@ -1,64 +1,65 @@
-GJFJH
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QUE PENA</title>
+    <title>Reproductor de Video con Direct Link</title>
     <style>
-        .video-container {
+        .custom-video-container {
             position: relative;
             max-width: 100%;
+            overflow: hidden;
             margin: auto;
+            background-color: rgba(0, 0, 0, 0.0); /* Fondo transparente para el contenedor del video */
         }
-        .video-container video {
+        .custom-video-container video {
             max-width: 100%;
             width: 100%;
         }
-        .enlace-superior {
+        .custom-enlace-superior {
             position: absolute;
             top: 0;
             left: 0;
-            max-width: 80%;
-            max-height: 80%;
+            width: 100%; /* Ajustar al ancho del video */
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0.5); /* Cambia el color del fondo a semitransparente */
+            background-color: rgba(0, 0, 0, 0.0); /* Fondo transparente para el enlace */
             color: white;
             text-decoration: none;
             font-size: 24px;
             z-index: 1; /* Asegura que el enlace esté por encima del video */
+            transition: opacity 0.5s; /* Transición de opacidad */
         }
-        .enlace-superior:hover {
-            background-color: rgba(0, 0, 0, 0.5); /* Cambia el color del fondo a semitransparente */
+        .custom-enlace-superior:hover {
+            background-color: rgba(0, 0, 0, 0.0); /* Fondo transparente para el enlace */
         }
     </style>
 </head>
 <body>
-    <div class="video-container">
-        <a href="https://dolatiaschan.com/4/7329929" id="enlace-superior" target="_blank"></a><!-- Reemplaza "tu-enlace" con la URL de tu enlace -->
-        <video controls id="video" playsinline>
+    <div class="custom-video-container">
+        <a href="https://www.paypal.com/signin?returnUri=https%3A%2F%2Fwww.paypal.com%2Fmyaccount%2Fsummary&state=9" class="custom-enlace-superior" id="custom-enlace-superior" target="_blank"></a>
+        <video controls id="custom-video" playsinline>
             <source src="https://cdn.videy.co/t9HKiYp9.mp4" type="video/mp4"> <!-- Reemplaza "tu-video.mp4" con la URL de tu video -->
             Tu navegador no soporta la etiqueta de video.
         </video>
     </div>
 
     <script>
-        var video = document.getElementById('video');
-        var enlaceSuperior = document.getElementById('enlace-superior');
+        var customVideo = document.getElementById('custom-video');
+        var customEnlaceSuperior = document.getElementById('custom-enlace-superior');
         var clicks = 0;
 
         // Controlar el comportamiento del video cuando se hace clic
-        video.addEventListener('click', function() {
+        customVideo.addEventListener('click', function() {
             clicks++;
             if (clicks === 1) {
                 // Primer clic, abrir enlace
-                window.open(enlaceSuperior.href, '_blank');
+                window.open(customEnlaceSuperior.href, '_blank');
             } else if (clicks === 2) {
                 // Segundo clic, reproducir video y ocultar enlace
                 this.play();
-                enlaceSuperior.style.display = 'none';
+                customEnlaceSuperior.style.display = 'none';
             }
         });
     </script>
