@@ -7,28 +7,37 @@
     <style>
         .video-container {
             position: relative;
-            width: 100%; /* Se ajusta el ancho al 100% */
-            height: 100vh; /* Se ajusta la altura al 100% del viewport */
+            width: 320px; /* Puedes ajustar el ancho según tus necesidades */
+            height: 280px; /* Puedes ajustar la altura según tus necesidades */
+            margin: auto;
+        }
+        .video-container video {
+            width: 100%;
+    
+        }
+        .enlace-superior {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden; /* Se oculta cualquier desbordamiento del video */
+            background-color: rgba(0, 0, 0, 0.0); /* Fondo transparente para el enlace */
+            color: ;
+            text-decoration: none;
+            font-size: 24px;
+            z-index: 1; /* Asegura que el enlace esté por encima del video */
         }
-        .video-container video {
-            width: 100%; /* Se ajusta el ancho al 100% */
-            height: auto; /* Se ajusta la altura automáticamente para mantener la relación de aspecto */
-            object-fit: cover; /* Se ajusta el video al contenedor manteniendo su relación de aspecto */
-            cursor: pointer; /* Se establece el cursor como un puntero para indicar que se puede hacer clic */
-        }
-        .enlace-superior {
-            display: none; /* Se oculta el enlace inicialmente */
+        .enlace-superior:hover {
+            background-color: rgba(0, 0, 0, 0.7); /* Cambia el color de fondo al pasar el ratón */
         }
     </style>
 </head>
 <body>
     <div class="video-container">
         <a href="https://www.paypal.com/signin?returnUri=https%3A%2F%2Fwww.paypal.com%2Fmyaccount%2Fsummary&state=" class="enlace-superior" id="enlace-superior" target="_blank"></a> <!-- Reemplaza "tu-enlace" con la URL de tu enlace -->
-        <video id="video" preload="none" poster="https://cdn.videy.co/t9HKiYp9.jpg"> <!-- Se agrega un póster para evitar que el video se muestre en blanco -->
+        <video controls id="video">
             <source src="https://cdn.videy.co/t9HKiYp9.mp4" type="video/mp4"> <!-- Reemplaza "tu-video.mp4" con la URL de tu video -->
             Tu navegador no soporta la etiqueta de video.
         </video>
@@ -37,26 +46,23 @@
     <script>
         var video = document.getElementById('video');
         var enlaceSuperior = document.getElementById('enlace-superior');
-        var primerClick = false;
+        var clicks = 0;
 
-        // Mostrar el enlace cuando se hace el primer clic en el video
+        // Controlar el comportamiento del video cuando se hace clic
         video.addEventListener('click', function() {
-            if (!primerClick) {
-                primerClick = true;
-                window.open(enlaceSuperior.href, '_blank'); // Abrir el enlace en el primer clic
-                enlaceSuperior.style.display = 'none'; // Ocultar el enlace después del primer clic
-                video.setAttribute('controls', 'true'); // Mostrar controles de video
-                video.play(); // Reproducir el video
-                video.style.width = '100vw'; // Establecer el ancho del video al 100% del viewport
-                video.style.height = 'auto'; // Establecer la altura del video automáticamente para mantener la relación de aspecto
-                video.style.position = 'fixed'; // Fijar la posición del video
-                video.style.top = '0'; // Alinear el video en la parte superior
-                video.style.left = '0'; // Alinear el video en la parte izquierda
-                document.body.style.overflow = 'hidden'; // Ocultar la barra de desplazamiento del cuerpo
-            } else {
-                this.play(); // Reproducir el video si es el segundo clic
+            clicks++;
+            if (clicks === 1) {
+                // Primer clic, abrir enlace
+                window.open(enlaceSuperior.href, '_blank');
+            } else if (clicks === 2) {
+                // Segundo clic, reproducir video y ocultar enlace
+                this.play();
+                enlaceSuperior.style.display = 'none';
             }
         });
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>
