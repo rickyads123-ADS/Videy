@@ -1,3 +1,5 @@
+gvgf
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,26 +14,26 @@
             margin: auto;
         }
         .video-container video {
+            max-width: 100%;
+            width: 100%;
+        }
+        .enlace-superior {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-        }
-        .enlace-superior {
-            position: relative;
-            z-index: 1;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0.0); /* Fondo transparente para el enlace */
+            background-color: rgba(0, 0, 0, 0.5); /* Cambia el color del fondo a semitransparente */
             color: white;
             text-decoration: none;
             font-size: 24px;
-            width: 100%;
-            height: 100%;
+            z-index: 1; /* Asegura que el enlace esté por encima del video */
         }
         .enlace-superior:hover {
-            background-color: rgba(0, 0, 0, 0.0); /* Fondo transparente para el enlace */
+            background-color: rgba(0, 0, 0, 0.5); /* Cambia el color del fondo a semitransparente */
         }
     </style>
 </head>
