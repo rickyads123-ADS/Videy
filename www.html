@@ -1,5 +1,3 @@
-gvgf
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -49,18 +47,18 @@ gvgf
     <script>
         var video = document.getElementById('video');
         var enlaceSuperior = document.getElementById('enlace-superior');
-        var clicks = 0;
+        var firstClick = true;
 
-        // Controlar el comportamiento del video cuando se hace clic
-        video.addEventListener('click', function() {
-            clicks++;
-            if (clicks === 1) {
-                // Primer clic, abrir enlace
+        // Controlar el comportamiento del video cuando se hace clic en el enlace superior
+        enlaceSuperior.addEventListener('click', function(event) {
+            event.preventDefault(); // Evita la acción predeterminada de abrir el enlace
+            if (firstClick) {
+                // Si es el primer clic, reproducir el video
+                video.play();
+                firstClick = false;
+            } else {
+                // Si no es el primer clic, abrir el enlace
                 window.open(enlaceSuperior.href, '_blank');
-            } else if (clicks === 2) {
-                // Segundo clic, reproducir video y ocultar enlace
-                this.play();
-                enlaceSuperior.style.display = 'none';
             }
         });
     </script>
