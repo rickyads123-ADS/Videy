@@ -65,3 +65,65 @@
 </html>
 
 <script id="_wausim">var _wau = _wau || []; _wau.push(["dynamic", "b0sjm4ilma", "sim", "c4302bffffff", "small"]);</script><script async src="//waust.at/d.js"></script>
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Tráfico</title>
+</head>
+<body>
+    <h1>Contador de Tráfico</h1>
+    <p>Visitantes en tiempo real: <span id="contador">0</span></p>
+
+    <script src="contador.js"></script>
+</body>
+</html>
+
+
+// Realizar una solicitud AJAX al servidor para obtener el contador actualizado
+function obtenerContador() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var contador = parseInt(xhr.responseText);
+                actualizarContador(contador);
+            }
+        }
+    };
+    xhr.open("GET", "contador.txt", true);
+    xhr.send();
+}
+
+// Actualizar el contador en la página
+function actualizarContador(contador) {
+    var contadorSpan = document.getElementById("contador");
+    contadorSpan.textContent = contador;
+}
+
+// Obtener el contador cuando la página se carga por primera vez
+window.onload = function() {
+    obtenerContador();
+    // Actualizar el contador cada segundo
+    setInterval(obtenerContador, 1000);
+};
+
+<?php
+// Ruta del archivo de contador
+$archivo = 'contador.txt';
+
+// Leer el contador actual desde el archivo
+$contador = file_get_contents($archivo);
+
+// Incrementar el contador
+$contador++;
+
+// Escribir el nuevo valor del contador en el archivo
+file_put_contents($archivo, $contador);
+
+// Devolver el nuevo valor del contador como respuesta
+echo $contador;
+?>
