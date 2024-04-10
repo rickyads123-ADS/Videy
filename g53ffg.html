@@ -1,3 +1,7 @@
+fgf
+
+jhgtf
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,24 +17,11 @@
         }
         .video-container video {
             width: 100%;
-           height: 100%
+            height: 100%;
+            object-fit: cover; /* Ajustar el video al contenedor manteniendo su relación de aspecto */
         }
         .enlace-superior {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.0); /* Fondo transparente para el enlace */
-            color: ;
-            text-decoration: none;
-            font-size: 24px;
-            z-index: 1; /* Asegura que el enlace esté por encima del video */
-        }
-        .enlace-superior:hover {
-            background-color: rgba(0, 0, 0, 0.7); /* Cambia el color de fondo al pasar el ratón */
+            display: none; /* Ocultar el enlace inicialmente */
         }
     </style>
 </head>
@@ -46,23 +37,30 @@
     <script>
         var video = document.getElementById('video');
         var enlaceSuperior = document.getElementById('enlace-superior');
-        var clicks = 0;
+        var primerClick = false;
 
-        // Controlar el comportamiento del video cuando se hace clic
+        // Mostrar el enlace cuando se hace el primer clic en el video
         video.addEventListener('click', function() {
-            clicks++;
-            if (clicks === 1) {
-                // Primer clic, abrir enlace
-                window.open(enlaceSuperior.href, '_blank');
-            } else if (clicks === 2) {
-                // Segundo clic, reproducir video y ocultar enlace
-                this.play();
-                enlaceSuperior.style.display = 'none';
+            if (!primerClick) {
+                primerClick = true;
+                enlaceSuperior.style.display = 'none'; // Ocultar el enlace después del primer clic
+            } else {
+                this.play(); // Reproducir el video si es el segundo clic
             }
         });
-    </script>
-</body>
-</html>
+
+        // Controlar el tamaño del video para evitar el modo pantalla completa
+        video.addEventListener('play', function() {
+            this.removeAttribute('controls');
+            this.style.cursor = 'pointer';
+            this.addEventListener('click', function() {
+                if (this.paused) {
+                    this.play();
+                } else {
+                    this.pause();
+                }
+            });
+        });
     </script>
 </body>
 </html>
