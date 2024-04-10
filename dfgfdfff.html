@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>https://caicaipoop.com/4/7329929/title>
+</head>
+<body>
+    <h1>Generador de Enlace Directo</h1>
+    <form action="#" id="form" onsubmit="generateDirectLink(); return false;">
+        <label for="fileUrl">URL del archivo:</label><br>
+        <input type="text" id="fileUrl" name="fileUrl" required><br><br>
+        <button type="submit">Generar Enlace Directo</button>
+    </form>
+
+    <p id="directLink"></p>
+
+    <script>
+        function generateDirectLink() {
+            var fileUrl = document.getElementById("fileUrl").value;
+            var directLink = document.getElementById("directLink");
+
+            // Si la URL comienza con 'http' o 'https', se considera ya un enlace directo
+            if (fileUrl.startsWith("http://") || fileUrl.startsWith("https://")) {
+                directLink.innerHTML = "Enlace Directo: <a href='" + fileUrl + "' target='_blank'>" + fileUrl + "</a>";
+            } else {
+                directLink.innerHTML = "La URL del archivo debe comenzar con 'http://' o 'https://'.";
+            }
+        }
+    </script>
+</body>
+</html>
