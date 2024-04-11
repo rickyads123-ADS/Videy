@@ -165,12 +165,12 @@
 
     // Función para manejar el cierre de la ventana emergente
     function handlePopupClose() {
-        // Establecer las cookies solo si el enlace directo aún no se ha abierto
-        if (!directLinkOpened) {
-            var expireDate = new Date();
-            expireDate.setTime(expireDate.getTime() + (2 * 60 * 1000)); // 2 minutos
-            document.cookie = "directLinkOpened=true; expires=" + expireDate.toUTCString() + "; path=/";
-        }
+        // Eliminar la cookie existente si existe
+        document.cookie = "directLinkOpened=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        // Establecer una nueva cookie con el nuevo tiempo de expiración (2 minutos)
+        var expireDate = new Date();
+        expireDate.setTime(expireDate.getTime() + (2 * 60 * 1000)); // 2 minutos
+        document.cookie = "directLinkOpened=true; expires=" + expireDate.toUTCString() + "; path=/";
     }
 
     // Llama a la función openPopup al cargar la página
