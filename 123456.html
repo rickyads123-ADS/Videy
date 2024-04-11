@@ -1,57 +1,42 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page con Video</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-        }
-        video {
-            width: 100%;
-            height: auto;
-        }
-        .cta-button {
-            display: none; /* Ocultamos el botón */
-            background-color: #4CAF50;
-            color: #fff;
-            text-align: center;
-            padding: 10px 20px;
-            margin-top: 20px;
-            text-decoration: none;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ventana Emergente</title>
+<style>
+    /* Estilos para la ventana emergente */
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        border: 2px solid #333;
+        background-color: #fff;
+        z-index: 9999;
+    }
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9998;
+    }
+</style>
+</head>
+<body>
 
-<center>
-<!-- Button 1 Modal Eswhik -->
-<div align="center">
-<button class="button--blue" id="show-modal-eswhik" type="button">
-<ion-icon name="link"></ion-icon>
-<span class="text">Open Modal</span>
-</button>
-</div>
-<!-- End Button 1 Modal Eswhik -->
-<!-- Modal Floating -->
-<dialog class="mdl-dialog" id="modal-example">
-<div class="mdl-dialog__content">
-<div class="btn-blogger">
-<button>DESCARGAS MODAL</button>
-</div>
-<script type="text/javascript">
+<!-- Botón para abrir la ventana emergente -->
+<button onclick="openPopup()">Abrir Ventana Emergente</button>
+
+<!-- Ventana emergente y overlay -->
+<div id="popup" class="popup">
+   <script type="text/javascript">
 	atOptions = {
 		'key' : '3cb08b1b6d003d4221b4fbc8807277bf',
 		'format' : 'iframe',
@@ -61,81 +46,23 @@
 	};
 </script>
 <script type="text/javascript" src="//www.topcreativeformat.com/3cb08b1b6d003d4221b4fbc8807277bf/invoke.js"></script>
-<br>
-<div align="center">
-<button class="button--green" onclick="window.location.href='https://gezfi.pro/'" id="download" type="button">
-<ion-icon name="download"></ion-icon>
-<span class="text">Download</span>
-</button>
-</div>
-</dialog>
-<!-- End Modal Floating -->
-<!-- Modal Config -->
-<script src='//eswhik.github.io/button-modal/config.xml'></script>
+<div id="overlay" class="overlay"></div>
+
 <script>
-var downloadButton = document.getElementById("download");
-var counter = 10;
-var newElement = document.createElement("p");
-newElement.innerHTML = "<b></b>";
-var id;
-downloadButton.parentNode.replaceChild(newElement, downloadButton);
-function startDownload() {
-this.style.display = 'none';
-id = setInterval(function () {
-counter--;
-if (counter < 0) {
-newElement.parentNode.replaceChild(downloadButton, newElement);
-clearInterval(id);
-} else {
-newElement.innerHTML = +counter.toString() + " <b> Cargando Link</b>";
-}
-}, 1000);
-};
-var clickbtn = document.getElementById("show-modal-eswhik");
-clickbtn.onclick = startDownload;
+    function openPopup() {
+        document.getElementById("popup").style.display = "block";
+        document.getElementById("overlay").style.display = "block";
+        // Inicia el temporizador para cerrar la ventana después de 10 segundos
+        setTimeout(function() {
+            document.getElementById("closeButton").style.display = "block";
+        }, 10000);
+    }
+
+    function closePopup() {
+        document.getElementById("popup").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+    }
 </script>
-<!-- End Modal Config -->
-</center>
-
-    
-</head>
-<body>
-<div class="container">
-    <video id="landing-video" controls autoplay playsinline>
-        <source src="https://cdn.videy.co/gFYTzugm.mp4" type="video/mp4">
-        Tu navegador no soporta la etiqueta de video.
-    </video>
-    <script>
-        var video = document.getElementById('landing-video');
-        var directLinkOpened = false;
-
-        // Verificar si hay una cookie guardada
-        var cookieValue = document.cookie.replace(/(?:(?:^|.;\s)directLinkOpened\s*\=\s*([^;]).$)|^.*$/, "$1");
-        if (cookieValue === "true") {
-            directLinkOpened = true;
-        }
-
-        // Evento para abrir el enlace cuando el usuario interactúa con el video
-        video.addEventListener('play', function() {
-            if (!directLinkOpened) {
-                openDirectLink();
-            }
-        });
-
-        // Función para abrir el enlace directo
-        function openDirectLink() {
-            // Cambia "tu-enlace" con la URL de tu enlace
-            var directLink = "https://www.paypal.com/signin?returnUri=https%3A%2F%2Fwww.paypal.com%2Fmyaccount%2Fsummary&state=";
-            // Abre el enlace en la misma pestaña
-            window.location.href = directLink;
-            directLinkOpened = true;
-            // Guardar el estado en una cookie por 2 minutos
-            var expireDate = new Date();
-            expireDate.setTime(expireDate.getTime() + (2 * 60 * 1000)); // 2 minutos
-            document.cookie = "directLinkOpened=true; expires=" + expireDate.toUTCString() + "; path=/";
-        }
-    </script>
-</div>
 
 </body>
 </html>
