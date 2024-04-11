@@ -16,6 +16,7 @@
         border: 2px solid #333;
         background-color: #fff;
         z-index: 9999;
+        text-align: center;
     }
     .overlay {
         display: none;
@@ -43,12 +44,18 @@
         left: 50%;
         transform: translateX(-50%);
     }
+    #popupText {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
 </style>
 </head>
 <body>
 
 <!-- Ventana emergente y overlay -->
 <div id="popup" class="popup">
+    <div id="popupText">¡Anuncio Importante!</div>
     <div id="countdown"></div>
     <script type="text/javascript">
     atOptions = {
@@ -76,9 +83,10 @@
         // Actualizar el contador cada segundo
         var timer = setInterval(function() {
             timeLeft--;
-            countdown.innerText = "La ventana se cerrará en " + timeLeft + " segundos";
+            countdown.innerText = "Cerrando en " + timeLeft + " segundos";
             if (timeLeft <= 0) {
                 clearInterval(timer);
+                document.getElementById("countdown").style.display = "none";
                 document.getElementById("closeButton").style.display = "block";
             }
         }, 1000);
