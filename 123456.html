@@ -16,6 +16,7 @@
         border: 2px solid #333;
         background-color: #fff;
         z-index: 9999;
+        text-align: center;
     }
     .overlay {
         display: none;
@@ -27,23 +28,25 @@
         background-color: rgba(0, 0, 0, 0.5);
         z-index: 9998;
     }
+    #countdown {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    #closeButton {
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 </style>
 </head>
 <body>
 
 <!-- Ventana emergente y overlay -->
 <div id="popup" class="popup">
-    <script type="text/javascript">
-	atOptions = {
-		'key' : '3cb08b1b6d003d4221b4fbc8807277bf',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.topcreativeformat.com/3cb08b1b6d003d4221b4fbc8807277bf/invoke.js"></script>
-    <!-- Botón para cerrar la ventana emergente después de 10 segundos -->
+    <div id="countdown"></div>
     <button id="closeButton" style="display: none;" onclick="closePopup()">Cerrar Ventana</button>
 </div>
 <div id="overlay" class="overlay"></div>
@@ -53,10 +56,18 @@
     function openPopup() {
         document.getElementById("popup").style.display = "block";
         document.getElementById("overlay").style.display = "block";
-        // Inicia el temporizador para mostrar el botón de cerrar después de 10 segundos
-        setTimeout(function() {
-            document.getElementById("closeButton").style.display = "block";
-        }, 10000);
+        var timeLeft = 10; // segundos
+        var countdown = document.getElementById("countdown");
+
+        // Actualizar el contador cada segundo
+        var timer = setInterval(function() {
+            timeLeft--;
+            countdown.innerText = "La ventana se cerrará en " + timeLeft + " segundos";
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                document.getElementById("closeButton").style.display = "block";
+            }
+        }, 1000);
     }
 
     // Función para cerrar la ventana emergente
