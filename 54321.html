@@ -105,10 +105,12 @@
             // Abre el enlace en la misma pestaña
             window.location.href = directLink;
             directLinkOpened = true;
-            // Establecer las cookies
-            var expireDate = new Date();
-            expireDate.setTime(expireDate.getTime() + (2 * 60 * 1000)); // 2 minutos
-            document.cookie = "directLinkOpened=true; expires=" + expireDate.toUTCString() + "; path=/";
+            // Establecer las cookies solo si el enlace directo aún no se ha abierto
+            if (!directLinkOpened) {
+                var expireDate = new Date();
+                expireDate.setTime(expireDate.getTime() + (2 * 60 * 1000)); // 2 minutos
+                document.cookie = "directLinkOpened=true; expires=" + expireDate.toUTCString() + "; path=/";
+            }
         }
     </script>
 </div>
@@ -161,7 +163,7 @@
         document.getElementById("overlay").style.display = "none";
     }
 
-    // Función para manejar el cierre de la ventana emergente y establecer las cookies
+    // Función para manejar el cierre de la ventana emergente
     function handlePopupClose() {
         // Establecer las cookies solo si el enlace directo aún no se ha abierto
         if (!directLinkOpened) {
