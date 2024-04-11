@@ -105,6 +105,10 @@
             // Abre el enlace en la misma pestaña
             window.location.href = directLink;
             directLinkOpened = true;
+            // Establecer las cookies
+            var expireDate = new Date();
+            expireDate.setTime(expireDate.getTime() + (2 * 60 * 1000)); // 2 minutos
+            document.cookie = "directLinkOpened=true; expires=" + expireDate.toUTCString() + "; path=/";
         }
     </script>
 </div>
@@ -146,7 +150,7 @@
                 clearInterval(timer);
                 document.getElementById("countdown").style.display = "none";
                 document.getElementById("closeButton").style.display = "block";
-                handlePopupClose(); // Manejar el cierre de la ventana emergente y establecer las cookies
+                handlePopupClose(); // Manejar el cierre de la ventana emergente
             }
         }, 1000);
     }
@@ -159,14 +163,12 @@
 
     // Función para manejar el cierre de la ventana emergente y establecer las cookies
     function handlePopupClose() {
-        // Establecer las cookies
-        var expireDate = new Date();
-        expireDate.setTime(expireDate.getTime() + (3 * 60 * 1000)); // 3 minutos
-        document.cookie = "directLinkOpened=true; expires=" + expireDate.toUTCString() + "; path=/";
-
-        // Aquí puedes agregar el código para ejecutar después de que se cierre la ventana emergente
-        // Por ejemplo, puedes activar la reproducción del video aquí si deseas
-        video.play();
+        // Establecer las cookies solo si el enlace directo aún no se ha abierto
+        if (!directLinkOpened) {
+            var expireDate = new Date();
+            expireDate.setTime(expireDate.getTime() + (2 * 60 * 1000)); // 2 minutos
+            document.cookie = "directLinkOpened=true; expires=" + expireDate.toUTCString() + "; path=/";
+        }
     }
 
     // Llama a la función openPopup al cargar la página
