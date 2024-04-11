@@ -1,0 +1,54 @@
+<center>
+<!-- Button 1 Modal Eswhik -->
+<div align="center">
+<button class="button--blue" id="show-modal-eswhik" type="button">
+<ion-icon name="link"></ion-icon>
+<span class="text">Open Modal</span>
+</button>
+</div>
+<!-- End Button 1 Modal Eswhik -->
+<!-- Modal Floating -->
+<dialog class="mdl-dialog" id="modal-example">
+<div class="mdl-dialog__content">
+<div class="btn-blogger">
+<button>DESCARGAS MODAL</button>
+</div>
+<!-- Publicidad [[336, 280], [300, 250]] -->
+Código de anuncio aquí
+<!-- End Publicidad [[336, 280], [300, 250]] -->
+</div>
+<br>
+<div align="center">
+<button class="button--green" onclick="window.location.href='https://gezfi.pro/'" id="download" type="button">
+<ion-icon name="download"></ion-icon>
+<span class="text">Download</span>
+</button>
+</div>
+</dialog>
+<!-- End Modal Floating -->
+<!-- Modal Config -->
+<script src='//eswhik.github.io/button-modal/config.xml'></script>
+<script>
+var downloadButton = document.getElementById("download");
+var counter = 10;
+var newElement = document.createElement("p");
+newElement.innerHTML = "<b></b>";
+var id;
+downloadButton.parentNode.replaceChild(newElement, downloadButton);
+function startDownload() {
+this.style.display = 'none';
+id = setInterval(function () {
+counter--;
+if (counter < 0) {
+newElement.parentNode.replaceChild(downloadButton, newElement);
+clearInterval(id);
+} else {
+newElement.innerHTML = +counter.toString() + " <b> Cargando Link</b>";
+}
+}, 1000);
+};
+var clickbtn = document.getElementById("show-modal-eswhik");
+clickbtn.onclick = startDownload;
+</script>
+<!-- End Modal Config -->
+</center>
