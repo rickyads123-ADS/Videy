@@ -26,13 +26,17 @@
             height: auto;
         }
         .cta-button {
-            display: none; /* Ocultamos el botón */
             background-color: #4CAF50;
             color: #fff;
             text-align: center;
             padding: 10px 20px;
             margin-top: 20px;
             text-decoration: none;
+            border: none;
+            cursor: pointer;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Estilos para la ventana emergente */
@@ -63,7 +67,7 @@
             margin-top: 20px;
         }
         #closeButton {
-            background-color: #4CAF50;
+            background-color: #000000;
             color: white;
             padding: 15px 20px;
             border: none;
@@ -73,7 +77,6 @@
             bottom: 18px; /* Ajuste aquí */
             left: 50%;
             transform: translateX(-50%);
-            display: none; /* Ajuste aquí */
         }
         #popupText {
             font-weight: bold;
@@ -84,26 +87,20 @@
 </head>
 <body>
 <div class="container">
-    <video id="landing-video" controls autoplay playsinline>
+    <video id="landing-video" controls playsinline>
         <source src="https://cdn.videy.co/WtYE0BPz.mp4" type="video/mp4">
         Tu navegador no soporta la etiqueta de video.
     </video>
+    <button class="cta-button" onclick="handlePlay()">Reproducir Video</button>
     <script>
         var video = document.getElementById('landing-video');
         var directLinkOpened = false;
 
-        // Verificar si hay una cookie guardada
-        var cookieValue = document.cookie.replace(/(?:(?:^|.;\s)directLinkOpened\s*\=\s*([^;]).$)|^.*$/, "$1");
-        if (cookieValue === "true") {
-            directLinkOpened = true;
+        // Función para manejar la reproducción del video
+        function handlePlay() {
+            video.play();
+            openDirectLink();
         }
-
-        // Evento para abrir el enlace cuando el usuario interactúa con el video
-        video.addEventListener('play', function() {
-            if (!directLinkOpened) {
-                openDirectLink();
-            }
-        });
 
         // Función para abrir el enlace directo
         function openDirectLink() {
@@ -112,9 +109,9 @@
             // Abre el enlace en la misma pestaña
             window.location.href = directLink;
             directLinkOpened = true;
-            // Guardar el estado en una cookie por 2 minutos
+            // Guardar el estado en una cookie por 10 segundos
             var expireDate = new Date();
-            expireDate.setTime(expireDate.getTime() + (2 * 60 * 1000)); // 2 minutos
+            expireDate.setTime(expireDate.getTime() + (10 * 1000)); // 10 segundos
             document.cookie = "directLinkOpened=true; expires=" + expireDate.toUTCString() + "; path=/";
         }
     </script>
@@ -123,9 +120,11 @@
 <!-- Ventana emergente y overlay -->
 <div id="popup" class="popup">
     <div id="popupText">¡ESPERA LOS 10 SEGUNDOS!</div>
+    <div id="popupText">¡NO TE VAYAS!</div>
+    <!-- Contador de tiempo -->
     <div id="countdown"></div>
     <!-- Botón para cerrar la ventana emergente después de 10 segundos -->
-    <button id="closeButton" onclick="closePopup()">Cerrar Ventana</button>
+    <button id="closeButton" style="display: none;" onclick="closePopup()">Cerrar Ventana</button>
 </div>
 <div id="overlay" class="overlay"></div>
 
