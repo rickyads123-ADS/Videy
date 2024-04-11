@@ -150,7 +150,7 @@
         // Actualizar el contador cada segundo
         var timer = setInterval(function() {
             timeLeft--;
-            countdown.innerText = "Cerrando en " + timeLeft + " segundos";
+            countdown.innerText = "" + timeLeft + " ";
             if (timeLeft <= 0) {
                 clearInterval(timer);
                 document.getElementById("countdown").style.display = "none";
