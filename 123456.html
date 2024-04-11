@@ -44,7 +44,7 @@
 </script>
 <script type="text/javascript" src="//www.topcreativeformat.com/3cb08b1b6d003d4221b4fbc8807277bf/invoke.js"></script>
     <!-- Botón para cerrar la ventana emergente después de 10 segundos -->
-    <button id="closeButton" onclick="closePopup()">Cerrar Ventana</button>
+    <button id="closeButton" style="display: none;" onclick="closePopup()">Cerrar Ventana</button>
 </div>
 <div id="overlay" class="overlay"></div>
 
@@ -53,7 +53,7 @@
     function openPopup() {
         document.getElementById("popup").style.display = "block";
         document.getElementById("overlay").style.display = "block";
-        // Inicia el temporizador para cerrar la ventana después de 10 segundos
+        // Inicia el temporizador para mostrar el botón de cerrar después de 10 segundos
         setTimeout(function() {
             document.getElementById("closeButton").style.display = "block";
         }, 10000);
