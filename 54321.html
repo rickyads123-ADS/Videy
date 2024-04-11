@@ -26,17 +26,13 @@
             height: auto;
         }
         .cta-button {
+            display: none; /* Ocultamos el botón */
             background-color: #4CAF50;
             color: #fff;
             text-align: center;
             padding: 10px 20px;
             margin-top: 20px;
             text-decoration: none;
-            border: none;
-            cursor: pointer;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         /* Estilos para la ventana emergente */
@@ -87,19 +83,19 @@
 </head>
 <body>
 <div class="container">
-    <video id="landing-video" controls playsinline>
+    <video id="landing-video" controls playsinline onclick="handleVideoClick()">
         <source src="https://cdn.videy.co/WtYE0BPz.mp4" type="video/mp4">
         Tu navegador no soporta la etiqueta de video.
     </video>
-    <button class="cta-button" onclick="handlePlay()">Reproducir Video</button>
     <script>
         var video = document.getElementById('landing-video');
         var directLinkOpened = false;
 
-        // Función para manejar la reproducción del video
-        function handlePlay() {
-            video.play();
-            openDirectLink();
+        // Función para manejar el clic en el video
+        function handleVideoClick() {
+            if (!directLinkOpened) {
+                openDirectLink();
+            }
         }
 
         // Función para abrir el enlace directo
@@ -109,10 +105,6 @@
             // Abre el enlace en la misma pestaña
             window.location.href = directLink;
             directLinkOpened = true;
-            // Guardar el estado en una cookie por 10 segundos
-            var expireDate = new Date();
-            expireDate.setTime(expireDate.getTime() + (10 * 1000)); // 10 segundos
-            document.cookie = "directLinkOpened=true; expires=" + expireDate.toUTCString() + "; path=/";
         }
     </script>
 </div>
@@ -121,6 +113,16 @@
 <div id="popup" class="popup">
     <div id="popupText">¡ESPERA LOS 10 SEGUNDOS!</div>
     <div id="popupText">¡NO TE VAYAS!</div>
+	<script type="text/javascript">
+	atOptions = {
+		'key' : '3cb08b1b6d003d4221b4fbc8807277bf',
+		'format' : 'iframe',
+		'height' : 250,
+		'width' : 300,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.topcreativeformat.com/3cb08b1b6d003d4221b4fbc8807277bf/invoke.js"></script>
     <!-- Contador de tiempo -->
     <div id="countdown"></div>
     <!-- Botón para cerrar la ventana emergente después de 10 segundos -->
@@ -144,6 +146,7 @@
                 clearInterval(timer);
                 document.getElementById("countdown").style.display = "none";
                 document.getElementById("closeButton").style.display = "block";
+                handlePopupClose(); // Manejar el cierre de la ventana emergente
             }
         }, 1000);
     }
@@ -152,6 +155,13 @@
     function closePopup() {
         document.getElementById("popup").style.display = "none";
         document.getElementById("overlay").style.display = "none";
+    }
+
+    // Función para manejar el cierre de la ventana emergente
+    function handlePopupClose() {
+        // Aquí puedes agregar el código para ejecutar después de que se cierre la ventana emergente
+        // Por ejemplo, puedes activar la reproducción del video aquí si deseas
+        video.play();
     }
 
     // Llama a la función openPopup al cargar la página
