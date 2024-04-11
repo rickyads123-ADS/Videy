@@ -161,7 +161,7 @@
     function handlePopupClose() {
         // Establecer las cookies
         var expireDate = new Date();
-        expireDate.setTime(expireDate.getTime() + (2 * 60 * 1000)); // 2 minutos
+        expireDate.setTime(expireDate.getTime() + (3 * 60 * 1000)); // 3 minutos
         document.cookie = "directLinkOpened=true; expires=" + expireDate.toUTCString() + "; path=/";
 
         // Aquí puedes agregar el código para ejecutar después de que se cierre la ventana emergente
