@@ -30,10 +30,10 @@
 </style>
 </head>
 <body>
-	
+
 <!-- Ventana emergente y overlay -->
 <div id="popup" class="popup">
-   <script type="text/javascript">
+    <script type="text/javascript">
 	atOptions = {
 		'key' : '3cb08b1b6d003d4221b4fbc8807277bf',
 		'format' : 'iframe',
@@ -43,9 +43,13 @@
 	};
 </script>
 <script type="text/javascript" src="//www.topcreativeformat.com/3cb08b1b6d003d4221b4fbc8807277bf/invoke.js"></script>
+    <!-- Botón para cerrar la ventana emergente después de 10 segundos -->
+    <button id="closeButton" onclick="closePopup()">Cerrar Ventana</button>
+</div>
 <div id="overlay" class="overlay"></div>
 
 <script>
+    // Función para abrir la ventana emergente
     function openPopup() {
         document.getElementById("popup").style.display = "block";
         document.getElementById("overlay").style.display = "block";
@@ -55,10 +59,14 @@
         }, 10000);
     }
 
+    // Función para cerrar la ventana emergente
     function closePopup() {
         document.getElementById("popup").style.display = "none";
         document.getElementById("overlay").style.display = "none";
     }
+
+    // Llama a la función openPopup al cargar la página
+    window.onload = openPopup;
 </script>
 
 </body>
